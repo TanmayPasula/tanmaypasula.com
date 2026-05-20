@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanmay Pasula</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;1,200;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --w: #ffffff;
+  --off: #f5f5f3;
+  --rule: #e0e0de;
+  --mid: #9a9a97;
+  --dark: #1c1c1a;
+  --blk: #0a0a09;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--w); color: var(--blk); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
+
+.cur { position: fixed; width: 5px; height: 5px; background: var(--blk); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
+.cur-r { position: fixed; width: 26px; height: 26px; border: 1px solid rgba(10,10,9,0.25); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.15s, height 0.15s, border-color 0.15s; }
+body:has(a:hover) .cur-r, body:has(button:hover) .cur-r { width: 42px; height: 42px; border-color: rgba(10,10,9,0.55); }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 2.5rem; transition: border-color 0.3s, background 0.3s; border-bottom: 1px solid transparent; }
+nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border-color: var(--rule); }
+.nav-logo { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blk); text-decoration: none; opacity: 0; animation: fd 0.5s 0.2s forwards; }
+.nav-links { display: flex; gap: 2rem; list-style: none; opacity: 0; animation: fd 0.5s 0.35s forwards; }
+.nav-links a { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--blk); }
+
+@keyframes fd { from { opacity:0; } to { opacity:1; } }
+@keyframes fu { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+.reveal { opacity:0; transform:translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.in { opacity:1; transform:none; }
+.d1 { transition-delay: 0.07s; }
+.d2 { transition-delay: 0.14s; }
+
+/* ── HERO ── */
+#hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-l {
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 2.5rem 3rem;
+  border-right: 1px solid var(--rule);
+}
+.hero-idx {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; color: var(--mid); letter-spacing: 0.14em;
+  margin-bottom: auto;
+  opacity: 0; animation: fd 0.5s 0.5s forwards;
+}
+.hero-name {
+  font-size: clamp(2.8rem, 4.5vw, 5.5rem);
+  font-weight: 200; line-height: 0.95; letter-spacing: -0.035em;
+  opacity: 0; animation: fu 0.9s 0.65s forwards;
+  margin-top: 2rem;
+}
+.hero-name i { font-style: italic; }
+.hero-meta {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule);
+  opacity: 0; animation: fu 0.7s 0.95s forwards;
+}
+.meta-item { padding: 1rem 0.8rem 0 0; border-right: 1px solid var(--rule); }
+.meta-item:last-child { border-right: none; }
+.meta-lbl { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.meta-val { font-size: 0.75rem; color: var(--dark); }
+
+/* Hero film grid — right side */
+.hero-r {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 60% 20% 20%;
+}
+.fc {
+  position: relative; overflow: hidden;
+  background: var(--off);
+  border-bottom: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+}
+.fc.full { grid-column: span 2; border-right: none; }
+.fc:nth-child(2) { border-right: none; } /* only col 2 of last rows */
+.fc:nth-child(4) { border-right: none; }
+.fc:nth-child(5), .fc:nth-child(6) { border-bottom: none; }
+/* override: even small cells — col 2 has no right border */
+.fc:not(.full):nth-child(even) { border-right: none; }
+.fc img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.fc:hover img { transform: scale(1.04); }
+.fc-ph {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 0.52rem;
+  color: var(--rule); letter-spacing: 0.1em;
+}
+
+/* ── MARQUEE ── */
+.strip { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--rule); padding: 0.7rem 0; }
+.strip-t { display: inline-flex; gap: 2.5rem; animation: mq 22s linear infinite; }
+@keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.s-item { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; flex-shrink:0; }
+.s-sep { color: var(--rule); }
+
+/* ── ABOUT ── */
+#about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
+.about-l { border-right: 1px solid var(--rule); padding: 4rem 2.5rem; display: flex; flex-direction: column; }
+.sec-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 2rem; }
+.about-h { font-size: clamp(1.8rem, 2.8vw, 2.7rem); font-weight: 200; line-height: 1.1; letter-spacing: -0.025em; }
+.about-h i { font-style: italic; }
+.about-p { margin-top: auto; padding-top: 2.5rem; font-size: 0.8rem; line-height: 1.85; color: #666663; max-width: 34ch; }
+.about-r { display: grid; grid-template-columns: 1fr 1fr; }
+.a-cell { border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); padding: 2rem 1.8rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.a-cell:nth-child(2n) { border-right: none; }
+.a-cell:last-child, .a-cell:nth-last-child(2) { border-bottom: none; }
+.a-cell.photo {
+  grid-column: span 2; border-right: none;
+  height: 280px; padding: 0; overflow: hidden;
+  position: relative; border-bottom: 1px solid var(--rule);
+}
+.a-cell.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.a-cell.photo .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); }
+.stat-n { font-size: 2.4rem; font-weight: 200; letter-spacing: -0.04em; line-height: 1; }
+.stat-l { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
+
+/* ── PORTFOLIO ── */
+#portfolio { border-bottom: 1px solid var(--rule); }
+.port-hdr { display: flex; justify-content: space-between; align-items: flex-end; padding: 2rem 2.5rem; border-bottom: 1px solid var(--rule); }
+.port-t { font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 200; letter-spacing: -0.02em; margin-top: 0.3rem; }
+.port-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.pi {
+  position: relative; overflow: hidden;
+  background: var(--off);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  aspect-ratio: 4/5;
+}
+.pi:nth-child(3n) { border-right: none; }
+.pi:nth-last-child(-n+3) { border-bottom: none; }
+.pi img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+.pi:hover img { transform: scale(1.04); }
+.pi-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--rule); }
+.pi-ov { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.2rem; background: linear-gradient(transparent, rgba(255,255,255,0.95)); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; justify-content: space-between; align-items: flex-end; }
+.pi:hover .pi-ov { transform: none; }
+.pi-title { font-size: 0.74rem; font-weight: 400; }
+.pi-loc { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); margin-top: 0.1rem; }
+.pi-arr { font-size: 0.68rem; color: var(--mid); }
+
+/* ── COLLECTIONS ── */
+#collections { border-bottom: 1px solid var(--rule); }
+.coll-hdr { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
+.coll-hdr-l { padding: 2rem 2.5rem; border-right: 1px solid var(--rule); }
+.coll-hdr-r { padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; }
+.coll-sub { font-size: 0.76rem; color: var(--mid); max-width: 28ch; line-height: 1.75; }
+.coll-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.cc { position: relative; overflow: hidden; border-right: 1px solid var(--rule); aspect-ratio: 3/4; cursor: none; background: var(--off); }
+.cc:last-child { border-right: none; }
+.cc-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(0) brightness(0.9); transition: filter 0.6s ease, transform 0.6s ease; }
+.cc-bg.b1 { background-color: #dedad5; }
+.cc-bg.b2 { background-color: #d5d9da; }
+.cc-bg.b3 { background-color: #d8d5da; }
+.cc:hover .cc-bg { filter: blur(10px) brightness(0.6); transform: scale(1.07); }
+.cc-tint { position: absolute; inset: 0; background: rgba(255,255,255,0.45); transition: background 0.5s; }
+.cc:hover .cc-tint { background: rgba(0,0,0,0.08); }
+.cc-body { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.8rem; }
+.cc-num { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.12em; margin-bottom: 0.5rem; transition: color 0.4s; }
+.cc:hover .cc-num { color: rgba(255,255,255,0.55); }
+.cc-name { font-size: 1.3rem; font-weight: 200; letter-spacing: -0.02em; line-height: 1.1; transition: color 0.4s; }
+.cc:hover .cc-name { color: #fff; }
+.cc-desc { font-size: 0.7rem; color: var(--mid); margin-top: 0.3rem; line-height: 1.6; transition: color 0.4s; }
+.cc:hover .cc-desc { color: rgba(255,255,255,0.55); }
+.cc-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.2rem; padding: 0.55rem 0.9rem; border: 1px solid var(--blk); background: var(--w); font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blk); cursor: none; opacity: 0; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s, background 0.2s, color 0.2s; }
+.cc:hover .cc-btn { opacity: 1; transform: none; }
+.cc-btn:hover { background: var(--blk); color: var(--w); }
+
+.coll-footer { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; border-top: 1px solid var(--rule); }
+.see-more-btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blk); text-decoration: none; padding: 0.6rem 1.1rem; border: 1px solid var(--blk); transition: background 0.2s, color 0.2s; cursor: none; }
+.see-more-btn:hover { background: var(--blk); color: var(--w); }
+.see-more-arr { display: inline-block; transition: transform 0.2s; }
+.see-more-btn:hover .see-more-arr { transform: translateX(3px); }
+
+.all-coll { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1); border-bottom: 1px solid var(--rule); }
+.all-coll.open { max-height: 1000px; }
+.all-coll-hdr { display: flex; justify-content: space-between; align-items: flex-end; padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--rule); }
+.all-coll-close { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); background: none; border: none; cursor: none; transition: color 0.2s; }
+.all-coll-close:hover { color: var(--blk); }
+.acl-row { display: grid; grid-template-columns: 2rem 5rem 1fr auto 1.2rem; align-items: center; gap: 1.5rem; padding: 1rem 2.5rem; border-bottom: 1px solid var(--rule); cursor: none; transition: background 0.15s, padding-left 0.2s; }
+.acl-row:last-child { border-bottom: none; }
+.acl-row:hover { background: var(--off); padding-left: 3rem; }
+.acl-num { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); }
+.acl-date { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); }
+.acl-name { font-size: 0.85rem; font-weight: 300; }
+.acl-count { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); justify-self: end; }
+.acl-arr { font-size: 0.68rem; color: var(--mid); transition: transform 0.2s, color 0.2s; }
+.acl-row:hover .acl-arr { transform: translateX(3px); color: var(--blk); }
+
+/* ── MODAL ── */
+.modal-bg { position: fixed; inset: 0; z-index: 500; background: rgba(255,255,255,0.75); backdrop-filter: blur(18px); display: none; align-items: center; justify-content: center; }
+.modal-bg.on { display: flex; }
+.modal-box { background: var(--w); border: 1px solid var(--rule); width: 100%; max-width: 380px; padding: 2.5rem; animation: mIn 0.3s cubic-bezier(0.16,1,0.3,1); }
+@keyframes mIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+.m-tag { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.2rem; }
+.m-title { font-size: 1.4rem; font-weight: 200; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
+.m-sub { font-size: 0.74rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.8rem; }
+.m-inp { width: 100%; background: var(--off); border: 1px solid var(--rule); border-bottom: 2px solid var(--blk); font-family: 'DM Mono', monospace; font-size: 0.82rem; padding: 0.85rem 1rem; outline: none; color: var(--blk); transition: background 0.2s; }
+.m-inp:focus { background: var(--w); }
+.m-inp::placeholder { color: var(--rule); }
+.m-err { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: #b03030; margin-top: 0.5rem; display: none; }
+.m-err.on { display: block; }
+.m-acts { display: flex; justify-content: space-between; align-items: center; margin-top: 1.8rem; }
+.m-cancel { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; background: none; border: none; cursor: none; transition: color 0.2s; }
+.m-cancel:hover { color: var(--blk); }
+.m-go { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.4rem; background: var(--blk); color: var(--w); border: none; cursor: none; transition: background 0.2s; }
+.m-go:hover { background: var(--dark); }
+
+/* ── CONTACT ── */
+#contact { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
+.con-l { border-right: 1px solid var(--rule); padding: 4rem 2.5rem; display: flex; flex-direction: column; }
+.con-h { font-size: clamp(1.8rem, 2.8vw, 2.7rem); font-weight: 200; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: auto; }
+.con-h i { font-style: italic; }
+.con-links { margin-top: 3rem; }
+.cl { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-top: 1px solid var(--rule); text-decoration: none; color: var(--dark); font-size: 0.78rem; transition: padding-left 0.22s; }
+.cl:last-child { border-bottom: 1px solid var(--rule); }
+.cl:hover { padding-left: 0.4rem; }
+.cl-type { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; }
+.cl-arr { font-size: 0.68rem; color: var(--mid); transition: transform 0.2s, color 0.2s; }
+.cl:hover .cl-arr { transform: translateX(3px); color: var(--blk); }
+.con-r { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+.con-card { position: relative; overflow: hidden; border-left: 1px solid var(--rule); border-bottom: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.8rem; min-height: 170px; text-decoration: none; color: inherit; cursor: none; background: var(--off); transition: background 0.25s; }
+.con-card:hover { background: var(--blk); }
+.con-card.map-card { grid-column: span 2; border-bottom: none; min-height: 200px; }
+.con-card-tag { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; transition: color 0.25s; }
+.con-card:hover .con-card-tag { color: rgba(255,255,255,0.45); }
+.con-card-val { font-size: 0.85rem; font-weight: 300; color: var(--dark); transition: color 0.25s; }
+.con-card:hover .con-card-val { color: #fff; }
+.con-card-arr { position: absolute; top: 1.4rem; right: 1.4rem; font-size: 0.68rem; color: var(--rule); transition: color 0.25s, transform 0.25s; }
+.con-card:hover .con-card-arr { color: rgba(255,255,255,0.4); transform: translate(2px,-2px); }
+.ig-graphic { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); width: 48px; height: 48px; opacity: 0.07; transition: opacity 0.25s; }
+.con-card:hover .ig-graphic { opacity: 0.16; }
+.email-graphic { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-62%); width: 52px; height: 38px; opacity: 0.06; transition: opacity 0.25s; }
+.con-card:hover .email-graphic { opacity: 0.15; }
+.map-graphic { position: absolute; inset: 0; }
+.map-graphic svg { width: 100%; height: 100%; position: absolute; inset: 0; }
+
+/* ── FOOTER ── */
+footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); }
+.ft-l { padding: 1.5rem 2.5rem; border-right: 1px solid var(--rule); display: flex; align-items: center; }
+.ft-logo { font-size: 0.66rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+.ft-r { padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+.ft-copy { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.08em; }
+.ft-top { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; background: none; border: none; cursor: none; transition: color 0.2s; white-space: nowrap; }
+.ft-top:hover { color: var(--blk); }
+.ft-ig { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.08em; text-decoration: none; transition: color 0.2s; cursor: none; white-space: nowrap; }
+.ft-ig:hover { color: var(--blk); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { background: rgba(255,255,255,0.98); }
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-r { display: none; }
+  .hero-l { border-right: none; padding: 6rem 1.5rem 2.5rem; }
+  .hero-name { font-size: clamp(2.8rem, 10vw, 5rem); }
+  .hero-meta { grid-template-columns: repeat(3, 1fr); }
+  #about { grid-template-columns: 1fr; }
+  .about-l { border-right: none; border-bottom: 1px solid var(--rule); padding: 3rem 1.5rem; }
+  .about-r { grid-template-columns: 1fr 1fr; }
+  .port-grid { grid-template-columns: 1fr 1fr; }
+  .pi:nth-child(3n) { border-right: 1px solid var(--rule); }
+  .pi:nth-child(2n) { border-right: none; }
+  .pi:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
+  .pi:nth-last-child(-n+2) { border-bottom: none; }
+  .coll-grid { grid-template-columns: 1fr; }
+  .coll-hdr { grid-template-columns: 1fr; }
+  .coll-hdr-l { border-right: none; border-bottom: 1px solid var(--rule); }
+  .cc { border-right: none; border-bottom: 1px solid var(--rule); aspect-ratio: 4/3; }
+  .cc:last-child { border-bottom: none; }
+  #contact { grid-template-columns: 1fr; }
+  .con-l { border-right: none; border-bottom: 1px solid var(--rule); padding: 3rem 1.5rem; }
+  .con-r { grid-template-columns: 1fr; }
+  .con-card { border-left: none; border-top: 1px solid var(--rule); }
+  .con-card.map-card { grid-column: span 1; }
+  footer { grid-template-columns: 1fr; }
+  .ft-l { border-right: none; border-bottom: 1px solid var(--rule); }
+  .acl-row { grid-template-columns: 2rem 1fr auto 1.2rem; gap: 0.8rem; padding: 1rem 1.5rem; }
+  .acl-date { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="c"></div>
+<div class="cur-r" id="cr"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Tanmay P.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://instagram.com/tp.capturess" target="_blank">@tp.capturess</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <span class="hero-idx">TP — 001</span>
+    <h1 class="hero-name">Tanmay<br><i>Pasula</i></h1>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-lbl">Based</span>
+        <span class="meta-val">San Jose, CA</span>
+      </div>
+      <div class="meta-item" style="padding-left:0.8rem;">
+        <span class="meta-lbl">Discipline</span>
+        <span class="meta-val">Photography</span>
+      </div>
+      <div class="meta-item" style="padding-left:0.8rem; border-right:none;">
+        <span class="meta-lbl">Est.</span>
+        <span class="meta-val">2023</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="fc full"><img src="photos/1.jpg" alt=""></div>
+    <div class="fc"><img src="photos/2.jpg" alt=""></div>
+    <div class="fc"><img src="photos/3.jpg" alt=""></div>
+    <div class="fc"><img src="photos/4.jpg" alt=""></div>
+    <div class="fc"><img src="photos/5.jpg" alt=""></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="strip">
+  <div class="strip-t">
+    <span class="s-item">Tanmay Pasula</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Photographer</span><span class="s-item s-sep">·</span>
+    <span class="s-item">San Jose, Bay Area</span><span class="s-item s-sep">·</span>
+    <span class="s-item">35mm &amp; Digital</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Landscape</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Urban</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Portrait</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Est. 2023</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Tanmay Pasula</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Photographer</span><span class="s-item s-sep">·</span>
+    <span class="s-item">San Jose, Bay Area</span><span class="s-item s-sep">·</span>
+    <span class="s-item">35mm &amp; Digital</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Landscape</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Urban</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Portrait</span><span class="s-item s-sep">·</span>
+    <span class="s-item">Est. 2023</span><span class="s-item s-sep">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-l">
+    <p class="sec-tag reveal">About</p>
+    <h2 class="about-h reveal d1">Seeing the world <i>differently.</i></h2>
+    <p class="about-p reveal d2">I'm Tanmay, 15, based in San Jose. I shoot landscapes, city streets, and the quiet moments most people walk past. Every frame is a chance to say something true without words.</p>
+  </div>
+  <div class="about-r">
+    <div class="a-cell photo reveal">
+      <img src="photos/6.jpg" alt="Tanmay Pasula">
+    </div>
+    <div class="a-cell reveal d1">
+      <span class="stat-n">2+</span>
+      <span class="stat-l">Years shooting</span>
+    </div>
+    <div class="a-cell reveal d2">
+      <span class="stat-n">∞</span>
+      <span class="stat-l">Frames taken</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="port-hdr reveal">
+    <div>
+      <p class="sec-tag">Selected work</p>
+      <h2 class="port-t">Portfolio</h2>
+    </div>
+    <span class="sec-tag">06</span>
+  </div>
+  <div class="port-grid">
+    <div class="pi reveal">
+      <img src="photos/7.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Prom Individual Photos</div><div class="pi-loc">Santa Clara University · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+    <div class="pi reveal d1">
+      <img src="photos/8.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Mens Volleyball</div><div class="pi-loc">Prospect High School · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+    <div class="pi reveal d2">
+      <img src="photos/9.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Mens Baseball</div><div class="pi-loc">Prospect High School · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+    <div class="pi reveal">
+      <img src="photos/10.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Lifeguard</div><div class="pi-loc">Hawaii · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+    <div class="pi reveal d1">
+      <img src="photos/11.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Award Winner</div><div class="pi-loc">San Jose · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+    <div class="pi reveal d2">
+      <img src="photos/12.jpg" alt="">
+      <div class="pi-ov"><div><div class="pi-title">Long Exposure Sunrise</div><div class="pi-loc">Hawaii · 2026</div></div><span class="pi-arr">↗</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="coll-hdr">
+    <div class="coll-hdr-l reveal">
+      <p class="sec-tag">Recent collections</p>
+      <h2 class="port-t">Collections</h2>
+    </div>
+    <div class="coll-hdr-r reveal d1">
+      <p class="coll-sub">Extended series, password-protected for clients and collaborators.</p>
+      <span class="sec-tag">3 of 9</span>
+    </div>
+  </div>
+  <div class="coll-grid">
+    <div class="cc reveal" onclick="openModal('landscapes')">
+      <div class="cc-bg b1"></div><div class="cc-tint"></div>
+      <div class="cc-body">
+        <span class="cc-num">01 / Dec 2024</span>
+        <h3 class="cc-name">Nature &amp;<br>Landscapes</h3>
+        <p class="cc-desc">Bay hills, coastal fog, Northern California.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('landscapes')">View archive →</button>
+      </div>
+    </div>
+    <div class="cc reveal d1" onclick="openModal('urban')">
+      <div class="cc-bg b2"></div><div class="cc-tint"></div>
+      <div class="cc-body">
+        <span class="cc-num">02 / Nov 2024</span>
+        <h3 class="cc-name">Urban &amp;<br>Street</h3>
+        <p class="cc-desc">San Jose and SF after dark.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('urban')">View archive →</button>
+      </div>
+    </div>
+    <div class="cc reveal d2" onclick="openModal('portraits')">
+      <div class="cc-bg b3"></div><div class="cc-tint"></div>
+      <div class="cc-body">
+        <span class="cc-num">03 / Oct 2024</span>
+        <h3 class="cc-name">Portraits</h3>
+        <p class="cc-desc">People in light, Bay Area.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('portraits')">View archive →</button>
+      </div>
+    </div>
+  </div>
+  <div class="coll-footer reveal">
+    <span class="sec-tag">Showing 3 most recent</span>
+    <a href="#all-collections" class="see-more-btn" onclick="openAllCollections(event)">See all collections <span class="see-more-arr">→</span></a>
+  </div>
+</section>
+
+<!-- ALL COLLECTIONS DRAWER -->
+<div id="all-collections" class="all-coll" aria-hidden="true">
+  <div class="all-coll-hdr">
+    <div><p class="sec-tag">All collections</p><h2 class="port-t">Archive</h2></div>
+    <button class="all-coll-close" onclick="closeAllCollections()">Close ×</button>
+  </div>
+  <div class="all-coll-list">
+    <div class="acl-row" onclick="openModal('landscapes')"><span class="acl-num">01</span><span class="acl-date">Dec 2024</span><span class="acl-name">Nature &amp; Landscapes</span><span class="acl-count">48 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('urban')"><span class="acl-num">02</span><span class="acl-date">Nov 2024</span><span class="acl-name">Urban &amp; Street</span><span class="acl-count">36 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('portraits')"><span class="acl-num">03</span><span class="acl-date">Oct 2024</span><span class="acl-name">Portraits</span><span class="acl-count">24 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('golden')"><span class="acl-num">04</span><span class="acl-date">Sep 2024</span><span class="acl-name">Golden Hour</span><span class="acl-count">31 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('night')"><span class="acl-num">05</span><span class="acl-date">Aug 2024</span><span class="acl-name">Night &amp; Long Exposure</span><span class="acl-count">19 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('macro')"><span class="acl-num">06</span><span class="acl-date">Jul 2024</span><span class="acl-name">Macro &amp; Detail</span><span class="acl-count">42 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('transit')"><span class="acl-num">07</span><span class="acl-date">Jun 2024</span><span class="acl-name">Transit &amp; Motion</span><span class="acl-count">28 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('water')"><span class="acl-num">08</span><span class="acl-date">Apr 2024</span><span class="acl-name">Water &amp; Coast</span><span class="acl-count">33 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('first')"><span class="acl-num">09</span><span class="acl-date">Jan 2024</span><span class="acl-name">First Rolls</span><span class="acl-count">22 images</span><span class="acl-arr">→</span></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="con-l">
+    <p class="sec-tag reveal">Contact</p>
+    <h2 class="con-h reveal d1">Let's make<br>something<br><i>together.</i></h2>
+    <div class="con-links reveal d2">
+      <a href="mailto:pasulatanmay@gmail.com" class="cl"><span class="cl-type">Email</span><span>pasulatanmay@gmail.com</span><span class="cl-arr">→</span></a>
+      <a href="https://instagram.com/tp.capturess" target="_blank" class="cl"><span class="cl-type">Instagram</span><span>@tp.capturess</span><span class="cl-arr">→</span></a>
+      <a href="#" class="cl"><span class="cl-type">Location</span><span>San Jose, CA</span><span class="cl-arr">→</span></a>
+    </div>
+  </div>
+  <div class="con-r reveal d1">
+    <a href="https://instagram.com/tp.capturess" target="_blank" class="con-card">
+      <svg class="ig-graphic" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      <span class="con-card-arr">↗</span>
+      <span class="con-card-tag">Instagram</span>
+      <span class="con-card-val">@tp.capturess</span>
+    </a>
+    <a href="mailto:pasulatanmay@gmail.com" class="con-card">
+      <svg class="email-graphic" viewBox="0 0 56 42" fill="none"><rect x="1" y="1" width="54" height="40" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M1 6l27 18L55 6" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="con-card-arr">↗</span>
+      <span class="con-card-tag">Email</span>
+      <span class="con-card-val">pasulatanmay@gmail.com</span>
+    </a>
+    <div class="con-card map-card">
+      <div class="map-graphic">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <pattern id="mg" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0L0 0 0 30" fill="none" stroke="#e0e0de" stroke-width="0.5"/></pattern>
+            <radialGradient id="pg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0a0a09" stop-opacity="0.08"/><stop offset="100%" stop-color="#0a0a09" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="600" height="200" fill="#f5f5f3"/>
+          <rect width="600" height="200" fill="url(#mg)"/>
+          <line x1="0" y1="100" x2="600" y2="100" stroke="#e8e8e6" stroke-width="6"/>
+          <line x1="300" y1="0" x2="300" y2="200" stroke="#e8e8e6" stroke-width="6"/>
+          <line x1="0" y1="55" x2="600" y2="145" stroke="#eeeeec" stroke-width="3"/>
+          <line x1="0" y1="145" x2="600" y2="55" stroke="#eeeeec" stroke-width="3"/>
+          <line x1="150" y1="0" x2="150" y2="200" stroke="#eeeeec" stroke-width="2"/>
+          <line x1="450" y1="0" x2="450" y2="200" stroke="#eeeeec" stroke-width="2"/>
+          <ellipse cx="300" cy="102" rx="38" ry="18" fill="url(#pg)"/>
+          <ellipse cx="300" cy="132" rx="7" ry="3" fill="#0a0a09" opacity="0.1"/>
+          <path d="M300 82C287 82 278 91 278 103C278 119 300 136 300 136C300 136 322 119 322 103C322 91 313 82 300 82Z" fill="#0a0a09"/>
+          <circle cx="300" cy="102" r="5" fill="white"/>
+          <circle cx="300" cy="103" r="20" fill="none" stroke="#0a0a09" stroke-width="1" stroke-opacity="0.12"/>
+          <circle cx="300" cy="103" r="32" fill="none" stroke="#0a0a09" stroke-width="0.5" stroke-opacity="0.07"/>
+        </svg>
+      </div>
+      <span class="con-card-arr">↗</span>
+      <span class="con-card-tag" style="position:relative;z-index:2;">Location</span>
+      <span class="con-card-val" style="position:relative;z-index:2;">San Jose, Bay Area</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-l"><span class="ft-logo">Tanmay P.</span></div>
+  <div class="ft-r">
+    <a href="https://instagram.com/tp.capturess" target="_blank" class="ft-ig">@tp.capturess</a>
+    <span class="ft-copy">© 2024 — All rights reserved</span>
+    <button class="ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top ↑</button>
+  </div>
+</footer>
+
+<div class="modal-bg" id="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <p class="m-tag">Private archive</p>
+    <h3 class="m-title" id="mTitle">Collection</h3>
+    <p class="m-sub">Password-protected. Enter your access code to continue.</p>
+    <input type="password" class="m-inp" id="mInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <p class="m-err" id="mErr">Incorrect password.</p>
+    <div class="m-acts">
+      <button class="m-cancel" onclick="closeModal()">Cancel</button>
+      <button class="m-go" onclick="checkPw()">Access →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const c=document.getElementById('c'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){c.style.left=mx+'px';c.style.top=my+'px';rx+=(mx-rx)*0.09;ry+=(my-ry)*0.09;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(tick);})();
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const PW={landscapes:{pass:'bayarea2024',url:'https://photos.google.com'},urban:{pass:'bayarea2024',url:'https://photos.google.com'},portraits:{pass:'bayarea2024',url:'https://photos.google.com'},golden:{pass:'bayarea2024',url:'https://photos.google.com'},night:{pass:'bayarea2024',url:'https://photos.google.com'},macro:{pass:'bayarea2024',url:'https://photos.google.com'},transit:{pass:'bayarea2024',url:'https://photos.google.com'},water:{pass:'bayarea2024',url:'https://photos.google.com'},first:{pass:'bayarea2024',url:'https://photos.google.com'}};
+const mNames={landscapes:'Landscapes',urban:'Urban & Street',portraits:'Portraits',golden:'Golden Hour',night:'Night & Long Exposure',macro:'Macro & Detail',transit:'Transit & Motion',water:'Water & Coast',first:'First Rolls'};
+function openAllCollections(e){e.preventDefault();const el=document.getElementById('all-collections');el.classList.add('open');el.setAttribute('aria-hidden','false');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
+function closeAllCollections(){const el=document.getElementById('all-collections');el.classList.remove('open');el.setAttribute('aria-hidden','true');document.getElementById('collections').scrollIntoView({behavior:'smooth',block:'start'});}
+let cur=null;
+function openModal(k){cur=k;document.getElementById('mTitle').textContent=mNames[k]||k;document.getElementById('mInp').value='';document.getElementById('mErr').classList.remove('on');document.getElementById('modal').classList.add('on');setTimeout(()=>document.getElementById('mInp').focus(),80);}
+function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
+function checkPw(){const v=document.getElementById('mInp').value;if(v===PW[cur].pass){document.getElementById('modal').classList.remove('on');window.open(PW[cur].url,'_blank');}else{document.getElementById('mErr').classList.add('on');document.getElementById('mInp').value='';document.getElementById('mInp').focus();}}
+document.querySelectorAll('a,button').forEach(el=>el.style.cursor='none');
+</script>
+</body>
+</html>
