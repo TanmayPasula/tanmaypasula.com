@@ -412,7 +412,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
     </div>
     <div class="pi reveal d2">
       <img src="photos/9.jpg" alt="">
-      <div class="pi-ov"><div><div class="pi-title">Mens Baseball</div><div class="pi-loc">Prospect High School · 2026</div></div><span class="pi-arr">↗</span></div>
+      <div class="pi-ov"><div><div class="pi-title">Lone Leaf</div><div class="pi-loc">Sanborn Park · 2025</div></div><span class="pi-arr">↗</span></div>
     </div>
     <div class="pi reveal">
       <img src="photos/10.jpg" alt="">
@@ -438,40 +438,43 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
     </div>
     <div class="coll-hdr-r reveal d1">
       <p class="coll-sub">Extended series, password-protected for clients and collaborators.</p>
-      <span class="sec-tag">3 of 9</span>
+      <span class="sec-tag">2 of 9</span>
     </div>
   </div>
   <div class="coll-grid">
-    <div class="cc reveal" onclick="openModal('landscapes')">
-      <div class="cc-bg b1"></div><div class="cc-tint"></div>
+    <div class="cc reveal" onclick="openModal('prom')">
+      <div class="cc-bg b1"><img src="photos/13.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="cc-tint"></div>
       <div class="cc-body">
-        <span class="cc-num">01 / Dec 2024</span>
-        <h3 class="cc-name">Nature &amp;<br>Landscapes</h3>
-        <p class="cc-desc">Bay hills, coastal fog, Northern California.</p>
-        <button class="cc-btn" onclick="event.stopPropagation();openModal('landscapes')">View archive →</button>
+        <span class="cc-num">01 / May 2026</span>
+        <h3 class="cc-name">PHS Prom<br>'26</h3>
+        <p class="cc-desc">Prospect High School prom portraits.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('prom')">View archive →</button>
       </div>
     </div>
-    <div class="cc reveal d1" onclick="openModal('urban')">
-      <div class="cc-bg b2"></div><div class="cc-tint"></div>
+    <div class="cc reveal d1" onclick="openModal('seniors')">
+      <div class="cc-bg b2"><img src="photos/14.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="cc-tint"></div>
       <div class="cc-body">
-        <span class="cc-num">02 / Nov 2024</span>
-        <h3 class="cc-name">Urban &amp;<br>Street</h3>
-        <p class="cc-desc">San Jose and SF after dark.</p>
-        <button class="cc-btn" onclick="event.stopPropagation();openModal('urban')">View archive →</button>
+        <span class="cc-num">02 / May 2026</span>
+        <h3 class="cc-name">PHS Senior<br>Awards '26</h3>
+        <p class="cc-desc">Senior awards night at Prospect High.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('seniors')">View archive →</button>
       </div>
     </div>
-    <div class="cc reveal d2" onclick="openModal('portraits')">
-      <div class="cc-bg b3"></div><div class="cc-tint"></div>
+    <div class="cc reveal d2" onclick="openModal('soon')">
+      <div class="cc-bg b3"><img src="photos/15.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="cc-tint"></div>
       <div class="cc-body">
-        <span class="cc-num">03 / Oct 2024</span>
-        <h3 class="cc-name">Portraits</h3>
-        <p class="cc-desc">People in light, Bay Area.</p>
-        <button class="cc-btn" onclick="event.stopPropagation();openModal('portraits')">View archive →</button>
+        <span class="cc-num">03 / Coming soon</span>
+        <h3 class="cc-name">More<br>coming soon</h3>
+        <p class="cc-desc">New collections dropping soon.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('soon')">Learn more →</button>
       </div>
     </div>
   </div>
   <div class="coll-footer reveal">
-    <span class="sec-tag">Showing 3 most recent</span>
+    <span class="sec-tag">Showing most recent</span>
     <a href="#all-collections" class="see-more-btn" onclick="openAllCollections(event)">See all collections <span class="see-more-arr">→</span></a>
   </div>
 </section>
@@ -483,15 +486,15 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
     <button class="all-coll-close" onclick="closeAllCollections()">Close ×</button>
   </div>
   <div class="all-coll-list">
-    <div class="acl-row" onclick="openModal('landscapes')"><span class="acl-num">01</span><span class="acl-date">Dec 2024</span><span class="acl-name">Nature &amp; Landscapes</span><span class="acl-count">48 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('urban')"><span class="acl-num">02</span><span class="acl-date">Nov 2024</span><span class="acl-name">Urban &amp; Street</span><span class="acl-count">36 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('portraits')"><span class="acl-num">03</span><span class="acl-date">Oct 2024</span><span class="acl-name">Portraits</span><span class="acl-count">24 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('golden')"><span class="acl-num">04</span><span class="acl-date">Sep 2024</span><span class="acl-name">Golden Hour</span><span class="acl-count">31 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('night')"><span class="acl-num">05</span><span class="acl-date">Aug 2024</span><span class="acl-name">Night &amp; Long Exposure</span><span class="acl-count">19 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('macro')"><span class="acl-num">06</span><span class="acl-date">Jul 2024</span><span class="acl-name">Macro &amp; Detail</span><span class="acl-count">42 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('transit')"><span class="acl-num">07</span><span class="acl-date">Jun 2024</span><span class="acl-name">Transit &amp; Motion</span><span class="acl-count">28 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('water')"><span class="acl-num">08</span><span class="acl-date">Apr 2024</span><span class="acl-name">Water &amp; Coast</span><span class="acl-count">33 images</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('first')"><span class="acl-num">09</span><span class="acl-date">Jan 2024</span><span class="acl-name">First Rolls</span><span class="acl-count">22 images</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('prom')"><span class="acl-num">01</span><span class="acl-date">May 2026</span><span class="acl-name">PHS Prom '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('seniors')"><span class="acl-num">02</span><span class="acl-date">May 2026</span><span class="acl-name">PHS Senior Awards '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">03</span><span class="acl-date">—</span><span class="acl-name">Golden Hour</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">04</span><span class="acl-date">—</span><span class="acl-name">Night &amp; Long Exposure</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">05</span><span class="acl-date">—</span><span class="acl-name">Macro &amp; Detail</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">06</span><span class="acl-date">—</span><span class="acl-name">Transit &amp; Motion</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">07</span><span class="acl-date">—</span><span class="acl-name">Water &amp; Coast</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">08</span><span class="acl-date">—</span><span class="acl-name">First Rolls</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">09</span><span class="acl-date">—</span><span class="acl-name">More soon</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
   </div>
 </div>
 
@@ -560,14 +563,17 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
 
 <div class="modal-bg" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
-    <p class="m-tag">Private archive</p>
-    <h3 class="m-title" id="mTitle">Collection</h3>
-    <p class="m-sub">Password-protected. Enter your access code to continue.</p>
+    <p class="m-tag">Collection</p>
+    <h3 class="m-title" id="mTitle"></h3>
+    <p class="m-sub" id="mSub">Password-protected. Enter your access code to continue.</p>
     <input type="password" class="m-inp" id="mInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
     <p class="m-err" id="mErr">Incorrect password.</p>
-    <div class="m-acts">
+    <div class="m-acts" id="mActsNormal">
       <button class="m-cancel" onclick="closeModal()">Cancel</button>
       <button class="m-go" onclick="checkPw()">Access →</button>
+    </div>
+    <div class="m-acts" id="mActsSoon" style="display:none;">
+      <button class="m-cancel" onclick="closeModal()">Close</button>
     </div>
   </div>
 </div>
@@ -580,14 +586,54 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>50));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}}),{threshold:0.06});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-const PW={landscapes:{pass:'bayarea2024',url:'https://photos.google.com'},urban:{pass:'bayarea2024',url:'https://photos.google.com'},portraits:{pass:'bayarea2024',url:'https://photos.google.com'},golden:{pass:'bayarea2024',url:'https://photos.google.com'},night:{pass:'bayarea2024',url:'https://photos.google.com'},macro:{pass:'bayarea2024',url:'https://photos.google.com'},transit:{pass:'bayarea2024',url:'https://photos.google.com'},water:{pass:'bayarea2024',url:'https://photos.google.com'},first:{pass:'bayarea2024',url:'https://photos.google.com'}};
-const mNames={landscapes:'Landscapes',urban:'Urban & Street',portraits:'Portraits',golden:'Golden Hour',night:'Night & Long Exposure',macro:'Macro & Detail',transit:'Transit & Motion',water:'Water & Coast',first:'First Rolls'};
+
+const PW={
+  prom:    {pass:'Prom26',    url:'https://adobe.ly/4uatrRA'},
+  seniors: {pass:'Seniors26', url:'https://adobe.ly/4ukXsON'},
+  soon:    null
+};
+const mNames={
+  prom:    "PHS Prom '26",
+  seniors: "PHS Senior Awards '26",
+  soon:    'Coming Soon'
+};
+
 function openAllCollections(e){e.preventDefault();const el=document.getElementById('all-collections');el.classList.add('open');el.setAttribute('aria-hidden','false');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
 function closeAllCollections(){const el=document.getElementById('all-collections');el.classList.remove('open');el.setAttribute('aria-hidden','true');document.getElementById('collections').scrollIntoView({behavior:'smooth',block:'start'});}
+
 let cur=null;
-function openModal(k){cur=k;document.getElementById('mTitle').textContent=mNames[k]||k;document.getElementById('mInp').value='';document.getElementById('mErr').classList.remove('on');document.getElementById('modal').classList.add('on');setTimeout(()=>document.getElementById('mInp').focus(),80);}
+function openModal(k){
+  cur=k;
+  const isSoon=!PW[k];
+  document.getElementById('mTitle').textContent=mNames[k]||k;
+  document.getElementById('mInp').value='';
+  document.getElementById('mErr').classList.remove('on');
+  if(isSoon){
+    document.getElementById('mSub').textContent="This collection isn't available yet — check back soon.";
+    document.getElementById('mInp').style.display='none';
+    document.getElementById('mActsNormal').style.display='none';
+    document.getElementById('mActsSoon').style.display='flex';
+  } else {
+    document.getElementById('mSub').textContent='Password-protected. Enter your access code to continue.';
+    document.getElementById('mInp').style.display='block';
+    document.getElementById('mActsNormal').style.display='flex';
+    document.getElementById('mActsSoon').style.display='none';
+  }
+  document.getElementById('modal').classList.add('on');
+  if(!isSoon) setTimeout(()=>document.getElementById('mInp').focus(),80);
+}
 function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
-function checkPw(){const v=document.getElementById('mInp').value;if(v===PW[cur].pass){document.getElementById('modal').classList.remove('on');window.open(PW[cur].url,'_blank');}else{document.getElementById('mErr').classList.add('on');document.getElementById('mInp').value='';document.getElementById('mInp').focus();}}
+function checkPw(){
+  const v=document.getElementById('mInp').value;
+  if(v===PW[cur].pass){
+    document.getElementById('modal').classList.remove('on');
+    window.open(PW[cur].url,'_blank');
+  } else {
+    document.getElementById('mErr').classList.add('on');
+    document.getElementById('mInp').value='';
+    document.getElementById('mInp').focus();
+  }
+}
 document.querySelectorAll('a,button').forEach(el=>el.style.cursor='none');
 </script>
 </body>
