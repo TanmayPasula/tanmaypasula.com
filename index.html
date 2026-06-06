@@ -39,86 +39,36 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .d1 { transition-delay: 0.07s; }
 .d2 { transition-delay: 0.14s; }
 
-/* ── HERO ── */
-#hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hero-l {
-  display: flex;
-  flex-direction: column;
-  padding: 7rem 2.5rem 3rem;
-  border-right: 1px solid var(--rule);
-}
-.hero-idx {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem; color: var(--mid); letter-spacing: 0.14em;
-  margin-bottom: auto;
-  opacity: 0; animation: fd 0.5s 0.5s forwards;
-}
-.hero-name {
-  font-size: clamp(2.8rem, 4.5vw, 5.5rem);
-  font-weight: 200; line-height: 0.95; letter-spacing: -0.035em;
-  opacity: 0; animation: fu 0.9s 0.65s forwards;
-  margin-top: 2rem;
-}
+/* HERO */
+#hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; border-bottom: 1px solid var(--rule); }
+.hero-l { display: flex; flex-direction: column; padding: 7rem 2.5rem 3rem; border-right: 1px solid var(--rule); }
+.hero-idx { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--mid); letter-spacing: 0.14em; margin-bottom: auto; opacity: 0; animation: fd 0.5s 0.5s forwards; }
+.hero-name { font-size: clamp(2.8rem, 4.5vw, 5.5rem); font-weight: 200; line-height: 0.95; letter-spacing: -0.035em; opacity: 0; animation: fu 0.9s 0.65s forwards; margin-top: 2rem; }
 .hero-name i { font-style: italic; }
-.hero-meta {
-  margin-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--rule);
-  opacity: 0; animation: fu 0.7s 0.95s forwards;
-}
+.hero-meta { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); opacity: 0; animation: fu 0.7s 0.95s forwards; }
 .meta-item { padding: 1rem 0.8rem 0 0; border-right: 1px solid var(--rule); }
 .meta-item:last-child { border-right: none; }
 .meta-lbl { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
 .meta-val { font-size: 0.75rem; color: var(--dark); }
 
-/* Hero film grid — right side */
-.hero-r {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 60% 20% 20%;
-}
-.fc {
-  position: relative; overflow: hidden;
-  background: var(--off);
-  border-bottom: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-}
+.hero-r { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 60% 20% 20%; }
+.fc { position: relative; overflow: hidden; background: var(--off); border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); }
 .fc.full { grid-column: span 2; border-right: none; }
-.fc:nth-child(2) { border-right: none; } /* only col 2 of last rows */
+.fc:nth-child(2) { border-right: none; }
 .fc:nth-child(4) { border-right: none; }
 .fc:nth-child(5), .fc:nth-child(6) { border-bottom: none; }
-/* override: even small cells — col 2 has no right border */
 .fc:not(.full):nth-child(even) { border-right: none; }
-.fc img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-}
+.fc img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
 .fc:hover img { transform: scale(1.04); }
-.fc-ph {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'DM Mono', monospace; font-size: 0.52rem;
-  color: var(--rule); letter-spacing: 0.1em;
-}
 
-/* ── MARQUEE ── */
+/* MARQUEE */
 .strip { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--rule); padding: 0.7rem 0; }
 .strip-t { display: inline-flex; gap: 2.5rem; animation: mq 22s linear infinite; }
 @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 .s-item { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; flex-shrink:0; }
 .s-sep { color: var(--rule); }
 
-/* ── ABOUT ── */
+/* ABOUT */
 #about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
 .about-l { border-right: 1px solid var(--rule); padding: 4rem 2.5rem; display: flex; flex-direction: column; }
 .sec-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 2rem; }
@@ -129,40 +79,28 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .a-cell { border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); padding: 2rem 1.8rem; display: flex; flex-direction: column; justify-content: flex-end; }
 .a-cell:nth-child(2n) { border-right: none; }
 .a-cell:last-child, .a-cell:nth-last-child(2) { border-bottom: none; }
-.a-cell.photo {
-  grid-column: span 2; border-right: none;
-  height: 280px; padding: 0; overflow: hidden;
-  position: relative; border-bottom: 1px solid var(--rule);
-}
+.a-cell.photo { grid-column: span 2; border-right: none; height: 280px; padding: 0; overflow: hidden; position: relative; border-bottom: 1px solid var(--rule); }
 .a-cell.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.a-cell.photo .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); }
 .stat-n { font-size: 2.4rem; font-weight: 200; letter-spacing: -0.04em; line-height: 1; }
 .stat-l { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.3rem; }
 
-/* ── PORTFOLIO ── */
+/* PORTFOLIO */
 #portfolio { border-bottom: 1px solid var(--rule); }
 .port-hdr { display: flex; justify-content: space-between; align-items: flex-end; padding: 2rem 2.5rem; border-bottom: 1px solid var(--rule); }
 .port-t { font-size: clamp(1.4rem, 2vw, 2rem); font-weight: 200; letter-spacing: -0.02em; margin-top: 0.3rem; }
 .port-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-.pi {
-  position: relative; overflow: hidden;
-  background: var(--off);
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  aspect-ratio: 4/5;
-}
+.pi { position: relative; overflow: hidden; background: var(--off); border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); aspect-ratio: 4/5; }
 .pi:nth-child(3n) { border-right: none; }
 .pi:nth-last-child(-n+3) { border-bottom: none; }
 .pi img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
 .pi:hover img { transform: scale(1.04); }
-.pi-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--rule); }
 .pi-ov { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.2rem; background: linear-gradient(transparent, rgba(255,255,255,0.95)); transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; justify-content: space-between; align-items: flex-end; }
 .pi:hover .pi-ov { transform: none; }
 .pi-title { font-size: 0.74rem; font-weight: 400; }
 .pi-loc { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); margin-top: 0.1rem; }
 .pi-arr { font-size: 0.68rem; color: var(--mid); }
 
-/* ── COLLECTIONS ── */
+/* COLLECTIONS */
 #collections { border-bottom: 1px solid var(--rule); }
 .coll-hdr { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
 .coll-hdr-l { padding: 2rem 2.5rem; border-right: 1px solid var(--rule); }
@@ -171,20 +109,25 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .coll-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
 .cc { position: relative; overflow: hidden; border-right: 1px solid var(--rule); aspect-ratio: 3/4; cursor: none; background: var(--off); }
 .cc:last-child { border-right: none; }
-.cc-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(0) brightness(0.9); transition: filter 0.6s ease, transform 0.6s ease; }
+/* Cover photo layer */
+.cc-cover { position: absolute; inset: 0; z-index: 0; }
+.cc-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; }
+.cc:hover .cc-cover img { transform: scale(1.07); filter: blur(6px) brightness(0.55); }
+/* Solid color fallback backgrounds */
+.cc-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: blur(0) brightness(0.9); transition: filter 0.6s ease, transform 0.6s ease; z-index: 0; }
 .cc-bg.b1 { background-color: #dedad5; }
 .cc-bg.b2 { background-color: #d5d9da; }
 .cc-bg.b3 { background-color: #d8d5da; }
 .cc:hover .cc-bg { filter: blur(10px) brightness(0.6); transform: scale(1.07); }
-.cc-tint { position: absolute; inset: 0; background: rgba(255,255,255,0.45); transition: background 0.5s; }
-.cc:hover .cc-tint { background: rgba(0,0,0,0.08); }
+.cc-tint { position: absolute; inset: 0; background: rgba(255,255,255,0.35); transition: background 0.5s; z-index: 1; }
+.cc:hover .cc-tint { background: rgba(0,0,0,0.05); }
 .cc-body { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 1.8rem; }
 .cc-num { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--mid); letter-spacing: 0.12em; margin-bottom: 0.5rem; transition: color 0.4s; }
-.cc:hover .cc-num { color: rgba(255,255,255,0.55); }
+.cc:hover .cc-num { color: rgba(255,255,255,0.6); }
 .cc-name { font-size: 1.3rem; font-weight: 200; letter-spacing: -0.02em; line-height: 1.1; transition: color 0.4s; }
 .cc:hover .cc-name { color: #fff; }
 .cc-desc { font-size: 0.7rem; color: var(--mid); margin-top: 0.3rem; line-height: 1.6; transition: color 0.4s; }
-.cc:hover .cc-desc { color: rgba(255,255,255,0.55); }
+.cc:hover .cc-desc { color: rgba(255,255,255,0.6); }
 .cc-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.2rem; padding: 0.55rem 0.9rem; border: 1px solid var(--blk); background: var(--w); font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blk); cursor: none; opacity: 0; transform: translateY(6px); transition: opacity 0.3s, transform 0.3s, background 0.2s, color 0.2s; }
 .cc:hover .cc-btn { opacity: 1; transform: none; }
 .cc-btn:hover { background: var(--blk); color: var(--w); }
@@ -196,7 +139,7 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .see-more-btn:hover .see-more-arr { transform: translateX(3px); }
 
 .all-coll { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1); border-bottom: 1px solid var(--rule); }
-.all-coll.open { max-height: 1000px; }
+.all-coll.open { max-height: 1200px; }
 .all-coll-hdr { display: flex; justify-content: space-between; align-items: flex-end; padding: 2rem 2.5rem 1.5rem; border-bottom: 1px solid var(--rule); }
 .all-coll-close { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); background: none; border: none; cursor: none; transition: color 0.2s; }
 .all-coll-close:hover { color: var(--blk); }
@@ -209,8 +152,10 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .acl-count { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--mid); justify-self: end; }
 .acl-arr { font-size: 0.68rem; color: var(--mid); transition: transform 0.2s, color 0.2s; }
 .acl-row:hover .acl-arr { transform: translateX(3px); color: var(--blk); }
+.acl-soon { opacity: 0.38; pointer-events: none; }
+.acl-soon .acl-count { font-style: italic; letter-spacing: 0.06em; }
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-bg { position: fixed; inset: 0; z-index: 500; background: rgba(255,255,255,0.75); backdrop-filter: blur(18px); display: none; align-items: center; justify-content: center; }
 .modal-bg.on { display: flex; }
 .modal-box { background: var(--w); border: 1px solid var(--rule); width: 100%; max-width: 380px; padding: 2.5rem; animation: mIn 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -229,7 +174,7 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .m-go { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.4rem; background: var(--blk); color: var(--w); border: none; cursor: none; transition: background 0.2s; }
 .m-go:hover { background: var(--dark); }
 
-/* ── CONTACT ── */
+/* CONTACT */
 #contact { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
 .con-l { border-right: 1px solid var(--rule); padding: 4rem 2.5rem; display: flex; flex-direction: column; }
 .con-h { font-size: clamp(1.8rem, 2.8vw, 2.7rem); font-weight: 200; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: auto; }
@@ -258,7 +203,7 @@ nav.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); 
 .map-graphic { position: absolute; inset: 0; }
 .map-graphic svg { width: 100%; height: 100%; position: absolute; inset: 0; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); }
 .ft-l { padding: 1.5rem 2.5rem; border-right: 1px solid var(--rule); display: flex; align-items: center; }
 .ft-logo { font-size: 0.66rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
@@ -269,7 +214,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
 .ft-ig { font-family: 'DM Mono', monospace; font-size: 0.54rem; color: var(--mid); letter-spacing: 0.08em; text-decoration: none; transition: color 0.2s; cursor: none; white-space: nowrap; }
 .ft-ig:hover { color: var(--blk); }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
   nav.scrolled { background: rgba(255,255,255,0.98); }
@@ -438,20 +383,24 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
     </div>
     <div class="coll-hdr-r reveal d1">
       <p class="coll-sub">Extended series, password-protected for clients and collaborators.</p>
-      <span class="sec-tag">2 of 9</span>
+      <span class="sec-tag">3 of 11</span>
     </div>
   </div>
   <div class="coll-grid">
-    <div class="cc reveal" onclick="openModal('prom')">
-      <div class="cc-bg b1"><img src="photos/13.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+    <!-- 01 — Graduation 2026 -->
+    <div class="cc reveal" onclick="openModal('graduation')">
+      <div class="cc-bg b1"><img src="photos/15.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       <div class="cc-tint"></div>
       <div class="cc-body">
-        <span class="cc-num">01 / May 2026</span>
-        <h3 class="cc-name">PHS Prom<br>'26</h3>
-        <p class="cc-desc">Prospect High School prom portraits.</p>
-        <button class="cc-btn" onclick="event.stopPropagation();openModal('prom')">View archive →</button>
+        <span class="cc-num">01 / Jun 2026</span>
+        <h3 class="cc-name">Graduation<br><i>'26</i></h3>
+        <p class="cc-desc">Caps, gowns, and the moments between.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('graduation')">View archive →</button>
       </div>
     </div>
+
+    <!-- 02 — Senior Awards -->
     <div class="cc reveal d1" onclick="openModal('seniors')">
       <div class="cc-bg b2"><img src="photos/14.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       <div class="cc-tint"></div>
@@ -462,19 +411,22 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
         <button class="cc-btn" onclick="event.stopPropagation();openModal('seniors')">View archive →</button>
       </div>
     </div>
-    <div class="cc reveal d2" onclick="openModal('soon')">
-      <div class="cc-bg b3"><img src="photos/15.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+
+    <!-- 03 — Prom -->
+    <div class="cc reveal d2" onclick="openModal('prom')">
+      <div class="cc-bg b3"><img src="photos/13.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       <div class="cc-tint"></div>
       <div class="cc-body">
-        <span class="cc-num">03 / Coming soon</span>
-        <h3 class="cc-name">More<br>coming soon</h3>
-        <p class="cc-desc">New collections dropping soon.</p>
-        <button class="cc-btn" onclick="event.stopPropagation();openModal('soon')">Learn more →</button>
+        <span class="cc-num">03 / May 2026</span>
+        <h3 class="cc-name">PHS Prom<br><i>'26</i></h3>
+        <p class="cc-desc">Prospect High School prom portraits.</p>
+        <button class="cc-btn" onclick="event.stopPropagation();openModal('prom')">View archive →</button>
       </div>
     </div>
+
   </div>
   <div class="coll-footer reveal">
-    <span class="sec-tag">Showing most recent</span>
+    <span class="sec-tag">Showing 3 most recent</span>
     <a href="#all-collections" class="see-more-btn" onclick="openAllCollections(event)">See all collections <span class="see-more-arr">→</span></a>
   </div>
 </section>
@@ -486,15 +438,17 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
     <button class="all-coll-close" onclick="closeAllCollections()">Close ×</button>
   </div>
   <div class="all-coll-list">
-    <div class="acl-row" onclick="openModal('prom')"><span class="acl-num">01</span><span class="acl-date">May 2026</span><span class="acl-name">PHS Prom '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('graduation')"><span class="acl-num">01</span><span class="acl-date">Jun 2026</span><span class="acl-name">Graduation '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
     <div class="acl-row" onclick="openModal('seniors')"><span class="acl-num">02</span><span class="acl-date">May 2026</span><span class="acl-name">PHS Senior Awards '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">03</span><span class="acl-date">—</span><span class="acl-name">Golden Hour</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">04</span><span class="acl-date">—</span><span class="acl-name">Night &amp; Long Exposure</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">05</span><span class="acl-date">—</span><span class="acl-name">Macro &amp; Detail</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">06</span><span class="acl-date">—</span><span class="acl-name">Transit &amp; Motion</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">07</span><span class="acl-date">—</span><span class="acl-name">Water &amp; Coast</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">08</span><span class="acl-date">—</span><span class="acl-name">First Rolls</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
-    <div class="acl-row" onclick="openModal('soon')"><span class="acl-num">09</span><span class="acl-date">—</span><span class="acl-name">More soon</span><span class="acl-count">Coming soon</span><span class="acl-arr">→</span></div>
+    <div class="acl-row" onclick="openModal('prom')"><span class="acl-num">03</span><span class="acl-date">May 2026</span><span class="acl-name">PHS Prom '26</span><span class="acl-count">Available</span><span class="acl-arr">→</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">04</span><span class="acl-date">—</span><span class="acl-name">Golden Hour</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">05</span><span class="acl-date">—</span><span class="acl-name">Night &amp; Long Exposure</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">06</span><span class="acl-date">—</span><span class="acl-name">Macro &amp; Detail</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">07</span><span class="acl-date">—</span><span class="acl-name">Transit &amp; Motion</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">08</span><span class="acl-date">—</span><span class="acl-name">Water &amp; Coast</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">09</span><span class="acl-date">—</span><span class="acl-name">Nature &amp; Landscapes</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">10</span><span class="acl-date">—</span><span class="acl-name">Urban &amp; Street</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
+    <div class="acl-row acl-soon"><span class="acl-num">11</span><span class="acl-date">—</span><span class="acl-name">First Rolls</span><span class="acl-count">Coming Soon</span><span class="acl-arr">·</span></div>
   </div>
 </div>
 
@@ -556,24 +510,21 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
   <div class="ft-l"><span class="ft-logo">Tanmay P.</span></div>
   <div class="ft-r">
     <a href="https://instagram.com/tp.capturess" target="_blank" class="ft-ig">@tp.capturess</a>
-    <span class="ft-copy">© 2026 — All rights reserved</span>
+    <span class="ft-copy">© 2024 — All rights reserved</span>
     <button class="ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Top ↑</button>
   </div>
 </footer>
 
 <div class="modal-bg" id="modal" onclick="closeModal(event)">
   <div class="modal-box">
-    <p class="m-tag">Collection</p>
-    <h3 class="m-title" id="mTitle"></h3>
-    <p class="m-sub" id="mSub">Password-protected. Enter your access code to continue.</p>
+    <p class="m-tag">Private archive</p>
+    <h3 class="m-title" id="mTitle">Collection</h3>
+    <p class="m-sub">Password-protected. Enter your access code to continue.</p>
     <input type="password" class="m-inp" id="mInp" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
     <p class="m-err" id="mErr">Incorrect password.</p>
-    <div class="m-acts" id="mActsNormal">
+    <div class="m-acts">
       <button class="m-cancel" onclick="closeModal()">Cancel</button>
       <button class="m-go" onclick="checkPw()">Access →</button>
-    </div>
-    <div class="m-acts" id="mActsSoon" style="display:none;">
-      <button class="m-cancel" onclick="closeModal()">Close</button>
     </div>
   </div>
 </div>
@@ -588,52 +539,22 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.tar
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 const PW={
-  prom:    {pass:'Prom26',    url:'https://adobe.ly/4uatrRA'},
-  seniors: {pass:'Seniors26', url:'https://adobe.ly/4ukXsON'},
-  soon:    null
+  graduation:{pass:'Graduation26',url:'https://lightroom.adobe.com/shares/4454ad06cc3a42dabde8b1654a76180b'},
+  seniors:   {pass:'Seniors26',   url:'https://adobe.ly/4ukXsON'},
+  prom:      {pass:'Prom26',      url:'https://adobe.ly/4uatrRA'}
 };
 const mNames={
-  prom:    "PHS Prom '26",
-  seniors: "PHS Senior Awards '26",
-  soon:    'Coming Soon'
+  graduation: "Graduation '26",
+  seniors:    "PHS Senior Awards '26",
+  prom:       "PHS Prom '26"
 };
 
 function openAllCollections(e){e.preventDefault();const el=document.getElementById('all-collections');el.classList.add('open');el.setAttribute('aria-hidden','false');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
 function closeAllCollections(){const el=document.getElementById('all-collections');el.classList.remove('open');el.setAttribute('aria-hidden','true');document.getElementById('collections').scrollIntoView({behavior:'smooth',block:'start'});}
-
 let cur=null;
-function openModal(k){
-  cur=k;
-  const isSoon=!PW[k];
-  document.getElementById('mTitle').textContent=mNames[k]||k;
-  document.getElementById('mInp').value='';
-  document.getElementById('mErr').classList.remove('on');
-  if(isSoon){
-    document.getElementById('mSub').textContent="This collection isn't available yet — check back soon.";
-    document.getElementById('mInp').style.display='none';
-    document.getElementById('mActsNormal').style.display='none';
-    document.getElementById('mActsSoon').style.display='flex';
-  } else {
-    document.getElementById('mSub').textContent='Password-protected. Enter your access code to continue.';
-    document.getElementById('mInp').style.display='block';
-    document.getElementById('mActsNormal').style.display='flex';
-    document.getElementById('mActsSoon').style.display='none';
-  }
-  document.getElementById('modal').classList.add('on');
-  if(!isSoon) setTimeout(()=>document.getElementById('mInp').focus(),80);
-}
+function openModal(k){cur=k;document.getElementById('mTitle').textContent=mNames[k]||k;document.getElementById('mInp').value='';document.getElementById('mErr').classList.remove('on');document.getElementById('modal').classList.add('on');setTimeout(()=>document.getElementById('mInp').focus(),80);}
 function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
-function checkPw(){
-  const v=document.getElementById('mInp').value;
-  if(v===PW[cur].pass){
-    document.getElementById('modal').classList.remove('on');
-    window.open(PW[cur].url,'_blank');
-  } else {
-    document.getElementById('mErr').classList.add('on');
-    document.getElementById('mInp').value='';
-    document.getElementById('mInp').focus();
-  }
-}
+function checkPw(){const v=document.getElementById('mInp').value;if(PW[cur]&&v===PW[cur].pass){document.getElementById('modal').classList.remove('on');window.open(PW[cur].url,'_blank');}else{document.getElementById('mErr').classList.add('on');document.getElementById('mInp').value='';document.getElementById('mInp').focus();}}
 document.querySelectorAll('a,button').forEach(el=>el.style.cursor='none');
 </script>
 </body>
