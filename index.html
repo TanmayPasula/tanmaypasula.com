@@ -258,6 +258,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Work</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="#collections">Collections</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://instagram.com/tp.capturess" target="_blank">@tp.capturess</a></li>
@@ -342,7 +343,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid va
   <div class="port-hdr reveal">
     <div>
       <p class="sec-tag">Selected work</p>
-      <h2 class="port-t">Portfolio</h2>
+      <h2 class="port-t">Selected Work</h2>
     </div>
     <span class="sec-tag">06</span>
   </div>
@@ -556,6 +557,7 @@ function openModal(k){cur=k;document.getElementById('mTitle').textContent=mNames
 function closeModal(e){if(!e||e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('on');}
 function checkPw(){const v=document.getElementById('mInp').value;if(PW[cur]&&v===PW[cur].pass){document.getElementById('modal').classList.remove('on');window.open(PW[cur].url,'_blank');}else{document.getElementById('mErr').classList.add('on');document.getElementById('mInp').value='';document.getElementById('mInp').focus();}}
 document.querySelectorAll('a,button').forEach(el=>el.style.cursor='none');
+</script>
 </script>
 </body>
 </html>
