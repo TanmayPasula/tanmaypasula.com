@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/clearnotice/favicon.svg" />
+    <link rel="apple-touch-icon" href="/clearnotice/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Ink, the app's text colour (matches theme_color in the web app manifest). -->
+    <meta name="theme-color" content="#1D2733" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="ClearNotice — government letters, made clear. Take a photo of a letter from Medi-Cal, CalFresh, the IRS, Social Security or immigration and see what it is, what to do, and by when. In English, Spanish, Vietnamese and Chinese."
+    />
+    <title>ClearNotice — government letters, made clear</title>
+    <!-- Paper (light) or dark background before the stylesheet loads, so there is no white flash. -->
+    <style>html{color:#16241d;background:#f6f6f0}html.dark{color:#eef1ea;background:#111915}</style>
+    <script>
+      // Apply the saved theme before first paint so there is no flash.
+      try {
+        var t = localStorage.getItem('cn-theme');
+        // Light (sage green) is the default; Dark only when the person picks it in Settings.
+        if (t === 'dark') document.documentElement.classList.add('dark');
+        localStorage.removeItem('cn-palette'); // palettes were removed; forget an old choice
+        if (localStorage.getItem('cn-large-text') === '1') document.documentElement.classList.add('large-text');
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/clearnotice/assets/index-CIKdpAUs.js"></script>
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/rolldown-runtime-C0FnF6B9.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/preload-helper-Db1YSfDj.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/utils-FO4exc1V.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/createLucideIcon-CjeF5_qi.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/button-3jrva1W2.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/check-CaplDrwr.js">
+    <link rel="modulepreload" crossorigin href="/clearnotice/assets/controls-4D6UHZun.js">
+    <link rel="stylesheet" crossorigin href="/clearnotice/assets/index-BLXm92KF.css">
+  <link rel="manifest" href="/clearnotice/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/clearnotice/registerSW.js"></script></head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+import"./rolldown-runtime-C0FnF6B9.js";import{_t as e,vt as t}from"./createLucideIcon-CjeF5_qi.js";import{t as n}from"./utils-FO4exc1V.js";t();var r=e();function i({className:e,...t}){return(0,r.jsx)(`div`,{className:n(`rounded-2xl border border-line bg-surface`,e),...t})}export{i as t};

@@ -1,0 +1,1 @@
+function e(e,t){return`${e}-${t}`.toLowerCase().normalize(`NFKD`).replace(/[^a-z0-9]+/g,`-`).replace(/^-+|-+$/g,``)}export{e as t};
